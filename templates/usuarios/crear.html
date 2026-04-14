@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Presentia</title>
+    <title>Crear Usuario - Presentia</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -12,17 +11,17 @@
             margin: 0;
             font-family: Arial;
             background: linear-gradient(135deg, #0a1f44, #1f4e79);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .container {
+        .card-box {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            width: 350px;
+            padding: 35px;
+            border-radius: 15px;
+            width: 420px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
@@ -33,24 +32,41 @@
         }
     </style>
 </head>
-<body>
-<div class="container">
-    <h2>Presentia</h2>
 
-    <!-- Formulario de login -->
-    <form action="{{ url_for('login') }}" method="POST">
+<body>
+<div class="card-box">
+    <h2>Crear Usuario</h2>
+
+    <form method="POST">
+
         <div class="mb-3">
-            <input type="text" class="form-control" name="correo" placeholder="Correo" required>
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" required>
         </div>
+
         <div class="mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+            <label class="form-label">Correo</label>
+            <input type="email" name="correo" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Rol</label>
+            <select name="id_rol" class="form-control">
+                <option value="1">Admin</option>
+                <option value="2">Empleado</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Crear Usuario</button>
     </form>
 
-    <!-- Enlace a crear usuario -->
-    <a href="{{ url_for('crear_usuario') }}" class="d-block text-center mt-3 text-decoration-none text-primary">
-        Crear usuario
+    <a href="{{ url_for('listar_usuarios') }}" class="d-block text-center mt-3 text-decoration-none">
+        Volver al listado
     </a>
 </div>
 </body>

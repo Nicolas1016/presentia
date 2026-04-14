@@ -1,6 +1,11 @@
+DROP DATABASE IF EXISTS presentia;
+CREATE DATABASE presentia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE presentia;
+
+
 CREATE TABLE roles (
     id_rol INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL
+    nombre VARCHAR(50) UNIQUE NOT NULL
 );
 
 INSERT INTO roles (nombre) VALUES ('admin'), ('empleado');

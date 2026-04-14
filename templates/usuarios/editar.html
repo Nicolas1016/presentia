@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Editar Usuario - Presentia</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -18,11 +17,11 @@
             align-items: center;
         }
 
-        .container {
+        .card-box {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            width: 400px;
+            padding: 35px;
+            border-radius: 15px;
+            width: 420px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
@@ -33,29 +32,35 @@
         }
     </style>
 </head>
+
 <body>
-<div class="container">
+<div class="card-box">
     <h2>Editar Usuario</h2>
 
-    <!-- Formulario de edición -->
     <form action="{{ url_for('editar_usuario', id=user[0]) }}" method="POST">
+
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ user[1] }}" required>
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" value="{{ user[1] }}" required>
         </div>
+
         <div class="mb-3">
-            <label for="correo" class="form-label">Correo</label>
-            <input type="email" class="form-control" id="correo" name="correo" value="{{ user[2] }}" required>
+            <label class="form-label">Correo</label>
+            <input type="email" name="correo" class="form-control" value="{{ user[2] }}" required>
         </div>
+
         <div class="mb-3">
-            <label for="id_rol" class="form-label">Rol</label>
-            <input type="number" class="form-control" id="id_rol" name="id_rol" value="{{ user[4] }}" required>
+            <label class="form-label">Rol</label>
+            <select name="id_rol" class="form-control">
+                <option value="1" {% if user[5] == 1 %}selected{% endif %}>Admin</option>
+                <option value="2" {% if user[5] == 2 %}selected{% endif %}>Empleado</option>
+            </select>
         </div>
-        <button type="submit" class="btn btn-warning w-100">Actualizar</button>
+
+        <button type="submit" class="btn btn-warning w-100">Actualizar Usuario</button>
     </form>
 
-    <!-- Enlace para volver al listado -->
-    <a href="{{ url_for('usuarios') }}" class="d-block text-center mt-3 text-decoration-none text-primary">
+    <a href="{{ url_for('listar_usuarios') }}" class="d-block text-center mt-3 text-decoration-none">
         Volver al listado
     </a>
 </div>
